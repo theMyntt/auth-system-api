@@ -6,7 +6,7 @@ export class LoginController {
   constructor(private readonly loginService: LoginService) {}
 
   @Post('login')
-  login(@Body("email") email: string, @Body("password") password: string): string {
+  login(@Body("email") email: string, @Body("password") password: string) {
     return this.loginService.getLogin(email, password);
   }
 }

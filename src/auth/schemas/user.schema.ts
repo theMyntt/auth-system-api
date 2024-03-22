@@ -1,7 +1,8 @@
 import { Prop, Schema, SchemaFactory } from "@nestjs/mongoose";
 
 @Schema({
-  timestamps: true
+  timestamps: true,
+  collection: "infos"
 })
 export class User {
   @Prop()

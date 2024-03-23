@@ -9,7 +9,7 @@ import { FormatedData } from './dto/data.dto';
 export class UserService {
   constructor(@InjectModel('User') private readonly userModel: Model<UserDataType>) {}
 
-  async createUser(name: string, email: string, password: string) {
+  async setUser(name: string, email: string, password: string) {
     const information: FormatedData = {
       _id: CreateId(),
       name: name,
@@ -35,7 +35,7 @@ export class UserService {
     const hashPassword: string = HashText(password);
     
     try {
-      const result = await this.userModel.findOne({email: email, password: hashPassword}).exec();
+      const result = await this.userModel.findOne({email, password: hashPassword}).exec();
 
       if (result) {
         return result;

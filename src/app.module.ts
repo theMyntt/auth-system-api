@@ -1,5 +1,6 @@
 import { Module } from '@nestjs/common';
-import { LoginModule, RegisterModule } from './main/module';
+import { LoginModule } from './login/login.module';
+import { RegisterModule } from './register/register.module';
 
 @Module({
   imports: [LoginModule, RegisterModule],

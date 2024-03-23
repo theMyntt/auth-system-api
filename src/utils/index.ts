@@ -1,1 +1,2 @@
-export * from "./hashPassword/hash.util"
+export * from "./hashPassword/hash.util";
+export * from "./createId/id.util";

@@ -2,8 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { User } from 'src/auth';
-import { HashText } from 'src/utils';
-import CreateId from 'src/utils/createId/id.util';
+import { HashText, CreateId } from 'src/utils';
 
 interface Informations {
   _id: number;

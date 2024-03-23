@@ -6,16 +6,15 @@ import { HashText, CreateId } from 'src/utils';
 import { FormatedData } from './dto/data.dto';
 
 @Injectable()
-export class RegisterService {
+export class UserService {
   constructor(@InjectModel('User') private readonly userModel: Model<UserDataType>) {}
 
   async createUser(name: string, email: string, password: string) {
-    const hashPassword = HashText(password);
     const information: FormatedData = {
       _id: CreateId(),
       name: name,
       email: email,
-      password: hashPassword,
+      password: HashText(password),
     };
 
     try {
@@ -27,6 +26,22 @@ export class RegisterService {
       await new this.userModel(information).save();
 
       return 'Usuário cadastrado com sucesso';
+    } catch (error) {
+      throw new Error(error.message);
+    }
+  }
+
+  async getLogin(email: string, password: string) {
+    const hashPassword: string = HashText(password);
+    
+    try {
+      const result = await this.userModel.findOne({email: email, password: hashPassword}).exec();
+
+      if (result) {
+        return result;
+      }
+
+      return "Não cadastrado";
     } catch (error) {
       throw new Error(error.message);
     }

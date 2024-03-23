@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserSchema } from 'src/schemas/user.schema';
-import { LoginController } from './login.controller';
-import { LoginService } from './login.service';
-import { ConfigModule, ConfigService } from '@nestjs/config';
+import { UserController } from './user.controller';
+import { UserService } from './user.service';
 
 @Module({
   imports: [
@@ -17,7 +17,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
     }),
     MongooseModule.forFeature([{ name: 'User', schema: UserSchema }])
   ],
-  controllers: [LoginController],
-  providers: [LoginService],
+  controllers: [UserController],
+  providers: [UserService],
 })
-export class LoginModule {}
+export class RegisterModule {}
